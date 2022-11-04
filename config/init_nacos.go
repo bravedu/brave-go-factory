@@ -8,7 +8,6 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/vo"
 	"gopkg.in/yaml.v3"
-	"os"
 	"strings"
 )
 
@@ -27,8 +26,8 @@ type naCosCnf struct {
 }
 
 func (c *Config) initNaCosCnf() {
-	projectEnv := strings.ToLower(util.GetEnvDefault(os.Getenv("APP_ENV"), c.YamlDao.ProCnf.Env))
-	projectName := strings.ToLower(util.GetEnvDefault(os.Getenv("PROJECT_NAME"), c.YamlDao.ProCnf.ProjectName))
+	projectEnv := strings.ToLower(util.GetEnvDefault("APP_ENV", c.YamlDao.ProCnf.Env))
+	projectName := strings.ToLower(util.GetEnvDefault("PROJECT_NAME", c.YamlDao.ProCnf.ProjectName))
 	if projectEnv == "" {
 		projectEnv = "online"
 	}
