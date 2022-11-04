@@ -1,0 +1,89 @@
+definitions:
+  controller.Result:
+    properties:
+      code:
+        type: integer
+      data: {}
+      error:
+        type: string
+    type: object
+  typespec.HelloList:
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+  typespec.HelloListResp:
+    properties:
+      list:
+        items:
+          $ref: '#/definitions/typespec.HelloList'
+        type: array
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/hello-lists:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 参数ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            allOf:
+            - $ref: '#/definitions/controller.Result'
+            - properties:
+                data:
+                  $ref: '#/definitions/typespec.HelloListResp'
+              type: object
+      summary: 注释标题
+  /v2/hello-v2:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 活动id
+        in: query
+        name: activeId
+        required: true
+        type: integer
+      - description: 每页显示数量
+        in: query
+        name: page_size
+        required: true
+        type: integer
+      - description: 页码
+        in: query
+        name: offset
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            allOf:
+            - $ref: '#/definitions/controller.Result'
+            - properties:
+                data:
+                  $ref: '#/definitions/typespec.HelloListResp'
+              type: object
+        "10004":
+          description: ""
+          schema:
+            $ref: '#/definitions/controller.Result'
+      summary: 测试post请求
+      tags:
+      - ""
+swagger: "2.0"

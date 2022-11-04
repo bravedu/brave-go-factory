@@ -1,0 +1,47 @@
+pro_cnf:
+    env: "example"
+    project_name: "my_project"
+    project_port: "8801"
+
+na_cos_cnf:
+    ip_addr: ""
+    context_path: "/nacos"
+    port: 80
+    scheme: "http"
+    time_out: 5000
+    app_name: ""
+    name_space_id: ""
+    data_id: ""
+    group: ""
+    user_name: ""
+    user_pwd: ""
+
+
+database:
+    ip: ""
+    port: 3306
+    database: ""
+    user: ""
+    password: ""
+    params: charset=utf8mb4&parseTime=True&loc=Local&timeout=10s
+    # 2 Error 3 Warn 4 Info
+    lof_mode: 4
+    max_connections: 300
+    max_open_conns: 100
+    max_idle_conns: 50
+
+    #只读实例
+    slave_array :
+        -
+            ip: ""
+            port: 3306
+            database: ""
+            user: ""
+            password: ""
+            params: charset=utf8mb4&parseTime=True&loc=Local&timeout=10s
+
+jwt:
+    jwt_secret: 2022!@2m#2001&&*(1
+    jwt_user_key: "uid"
+
+
