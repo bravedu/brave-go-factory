@@ -8,15 +8,19 @@ import (
 	"net/http"
 )
 
-// HelloList doc
-// @Summary 注释标题
-// @Schemes https
+// HelloList
+// @Summary 接口名称
+// @schemes https
 // @Description
+// @Tags
+// @Param activeId query int true "活动id"
+// @Param page_size query int false "每页显示数量"
+// @Param offset query int false "页码"
 // @Accept json
 // @Produce json
-// @Param id  path  int  true  "参数ID"
 // @Success 200 {object} Result{data=typespec.HelloListResp} "成功"
-// @Router /v1/hello-lists [get]
+// @Failure 10004 {object} Result
+// @Router /v1/hello [get]
 func HelloList(c *gin.Context) {
 	var (
 		req  typespec.HelloListReq
@@ -35,19 +39,20 @@ func HelloList(c *gin.Context) {
 }
 
 // HelloV2
-// @Summary 测试post请求
+// @Summary desc
 // @schemes https
 // @Description
 // @Tags
-// @name Authorization
-// @Param activeId query int true "活动id"
-// @Param page_size query int true "每页显示数量"
-// @Param offset query int true "页码"
+// @name BraveDu
 // @Accept json
 // @Produce json
-// @Success 200 {object} Result{data=typespec.HelloListResp} "成功"
-// @Failure 10004 {object} Result
-// @Router /v2/hello-v2 [post]
+// @Param Content-Type header string false "参数类型" default("application/json")
+// @Param Authorization header string false "Bearer 用户令牌"
+// @Param object body typespec.LoginReq true "手机号"
+// @Security ApiKeyAuth
+// @Success 200 {object} Result{data=typespec.LoginResp} "成功"
+// @Failure 10004 {object} Result "失败, code状态码非0,显示error信息即可"
+// @Router /v1/url [post]
 func HelloV2(c *gin.Context) {
 	var (
 		req  typespec.HelloListReq

@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"github.com/bravedu/brave-go-factory/modules/mysql_mod/db_dao"
+	"github.com/bravedu/brave-go-factory/modules/redis_mod"
 	"sync"
 )
 
@@ -12,9 +13,10 @@ var (
 )
 
 type Config struct {
-	BaseDao *baseCnf
-	YamlDao *YamlCnf
-	DbDao   db_dao.IStore
+	BaseDao  *baseCnf
+	YamlDao  *YamlCnf
+	DbDao    db_dao.IStore
+	RedisCli *redis_mod.RedisClient
 }
 
 func ConfInstance(env string) *Config {
@@ -33,9 +35,12 @@ func ConfInstanceDev(env string) *Config {
 		Conf = new(Config)
 		//配置文件读取
 		Conf.initYaml(fmt.Sprintf("%s_conf.yaml", env))
-		Conf.initNaCosCnf()
+		//Conf.initNaCosCnf()
 		//处理数据库资源
 		Conf.initDB()
+		//初始化Redis
+		Conf.initRedis()
+
 	})
 	return Conf
 }

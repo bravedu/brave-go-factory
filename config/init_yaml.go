@@ -23,6 +23,7 @@ type YamlCnf struct {
 	ProCnf  baseCnf    `yaml:"pro_cnf"`
 	NaCos   naCosCnf   `yaml:"na_cos_cnf"`
 	Db      db         `yaml:"database"`
-	Jwt     jwt        `json:"jwt"`
-	SuperDt projectCnf `json:"super_dt"`
+	Jwt     jwt        `yaml:"jwt"`
+	SuperDt projectCnf `yaml:"super_dt"`
+	Redis   redisCnf   `yaml:"redis""`
 }
