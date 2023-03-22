@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/bravedu/brave-go-factory/modules/mysql_mod/db_dao"
 	"github.com/bravedu/brave-go-factory/modules/redis_mod"
+	"github.com/go-pay/gopay/wechat"
 	"sync"
 )
 
@@ -13,10 +14,13 @@ var (
 )
 
 type Config struct {
-	BaseDao  *baseCnf
-	YamlDao  *YamlCnf
-	DbDao    db_dao.IStore
-	RedisCli *redis_mod.RedisClient
+	BaseDao      *baseCnf
+	YamlDao      *YamlCnf
+	DbDao        db_dao.IStore
+	RedisCli     *redis_mod.RedisClient
+	AliYunCli    AliYunCli
+	BaiDuCli     BaiDuCli
+	WeChatPayCli *wechat.Client
 }
 
 func ConfInstance(env string) *Config {
@@ -40,6 +44,10 @@ func ConfInstanceDev(env string) *Config {
 		Conf.initDB()
 		//初始化Redis
 		Conf.initRedis()
+		//初始化阿里云服务
+		Conf.initALiYun()
+		//初始化微信支付
+		Conf.initWeChatPayV2()
 
 	})
 	return Conf

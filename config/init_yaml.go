@@ -20,10 +20,15 @@ func (c *Config) initYaml(file string) {
 }
 
 type YamlCnf struct {
-	ProCnf  baseCnf    `yaml:"pro_cnf"`
-	NaCos   naCosCnf   `yaml:"na_cos_cnf"`
-	Db      db         `yaml:"database"`
-	Jwt     jwt        `yaml:"jwt"`
-	SuperDt projectCnf `yaml:"super_dt"`
-	Redis   redisCnf   `yaml:"redis""`
+	ProCnf    baseCnf    `yaml:"pro_cnf"`
+	NaCos     naCosCnf   `yaml:"na_cos_cnf"`
+	Db        db         `yaml:"database"`
+	Jwt       jwt        `yaml:"jwt"`
+	SuperDt   projectCnf `yaml:"super_dt"`
+	Redis     redisCnf   `yaml:"redis""`
+	ALiYunCnf aLiYunCnf  `yaml:"aliyun_cnf"`
+	BaiDuCnf  baiDuCnf   `yaml:"bai_du_cnf"`
+	Wxweb     wxweb      `yaml:"wxweb"`
+	Wxh5      wxh5       `yaml:"wxh5"`
+	Pay       pay        `yaml:"pay"`
 }
